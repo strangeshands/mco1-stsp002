@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.mco1</groupId>
-	<artifactId>baxterbank</artifactId>
+	<artifactId>TripLang</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name/>
 	<description/>

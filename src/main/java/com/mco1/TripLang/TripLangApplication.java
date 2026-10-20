@@ -1,13 +1,13 @@
-package com.mco1.baxterbank;
+package com.mco1.TripLang;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BaxterBankApplication {
+public class TripLangApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BaxterBankApplication.class, args);
+		SpringApplication.run(TripLangApplication.class, args);
 	}
 
 }
