@@ -2,42 +2,27 @@ package com.mco1.TripLang.dto;
 
 import com.mco1.TripLang.entity.AccountStatus;
 import com.mco1.TripLang.entity.UserRole;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 import java.time.Instant;
 
-public class UserDTO {
-    private Long id;
+/**
+ * Contains user information safe to return through the API.
+ * Passwords and password hashes are excluded.
+ */
+public class UserResponseDTO {
 
-    @NotBlank
-    @Size(max = 100)
-    private String displayName;
-
-    @NotBlank
-    @Email
-    @Size(max = 254)
-    private String email;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private UserRole role = UserRole.USER;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private AccountStatus status = AccountStatus.ACTIVE;
-
-    private Instant createdAt;
-
-    private Instant updatedAt;
+    private final Long id;
+    private final String displayName;
+    private final String email;
+    private final UserRole role;
+    private final AccountStatus status;
+    private final Instant createdAt;
+    private final Instant updatedAt;
 
     /**
      * Creates a user response.
      * Precondition: values come from an authorized user lookup.
-     * Postcondition: the DTO contains the supplied user information.
+     * Postcondition: the response contains the supplied user information.
      *
      * @param id the user identifier
      * @param displayName the display name
@@ -47,7 +32,7 @@ public class UserDTO {
      * @param createdAt the account creation timestamp
      * @param updatedAt the last modification timestamp
      */
-    public UserDTO(
+    public UserResponseDTO(
             Long id,
             String displayName,
             String email,
@@ -68,7 +53,7 @@ public class UserDTO {
     /**
      * Gets the user identifier.
      * Precondition: none.
-     * Postcondition: the DTO is unchanged.
+     * Postcondition: the response is unchanged.
      *
      * @return the user identifier
      */
@@ -79,7 +64,7 @@ public class UserDTO {
     /**
      * Gets the display name.
      * Precondition: none.
-     * Postcondition: the DTO is unchanged.
+     * Postcondition: the response is unchanged.
      *
      * @return the display name
      */
@@ -90,7 +75,7 @@ public class UserDTO {
     /**
      * Gets the email address.
      * Precondition: none.
-     * Postcondition: the DTO is unchanged.
+     * Postcondition: the response is unchanged.
      *
      * @return the email address
      */
@@ -101,7 +86,7 @@ public class UserDTO {
     /**
      * Gets the application role.
      * Precondition: none.
-     * Postcondition: the DTO is unchanged.
+     * Postcondition: the response is unchanged.
      *
      * @return the application role
      */
@@ -112,7 +97,7 @@ public class UserDTO {
     /**
      * Gets the account status.
      * Precondition: none.
-     * Postcondition: the DTO is unchanged.
+     * Postcondition: the response is unchanged.
      *
      * @return the account status
      */
@@ -121,9 +106,9 @@ public class UserDTO {
     }
 
     /**
-     * Gets the creation timestamp.
+     * Gets the account creation timestamp.
      * Precondition: none.
-     * Postcondition: the DTO is unchanged.
+     * Postcondition: the response is unchanged.
      *
      * @return the creation timestamp
      */
@@ -134,7 +119,7 @@ public class UserDTO {
     /**
      * Gets the last modification timestamp.
      * Precondition: none.
-     * Postcondition: the DTO is unchanged.
+     * Postcondition: the response is unchanged.
      *
      * @return the last modification timestamp
      */

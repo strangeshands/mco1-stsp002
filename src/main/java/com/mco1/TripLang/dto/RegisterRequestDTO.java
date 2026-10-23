@@ -5,9 +5,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 /**
- * Contains the credentials submitted during login.
+ * Contains the information submitted during registration.
  */
-public class LogInDTO {
+public class RegisterRequestDTO {
+
+    @NotBlank(message = "Display name is required")
+    @Size(max = 100, message = "Display name must not exceed 100 characters")
+    private String displayName;
 
     @NotBlank(message = "Email is required")
     @Email(message = "Email must be valid")
@@ -15,6 +19,7 @@ public class LogInDTO {
     private String email;
 
     @NotBlank(message = "Password is required")
+    @Size(min = 8, message = "Password must contain at least 8 characters")
     private String password;
 
     /**
@@ -22,20 +27,48 @@ public class LogInDTO {
      * Precondition: none.
      * Postcondition: an empty request exists.
      */
-    public LogInDTO() {
+    public RegisterRequestDTO() {
     }
 
     /**
-     * Creates a login request.
+     * Creates a registration request.
      * Precondition: none; fields require validation before processing.
-     * Postcondition: the request contains the supplied credentials.
+     * Postcondition: the request contains the supplied values.
      *
+     * @param displayName the submitted display name
      * @param email the submitted email address
      * @param password the submitted plain-text password
      */
-    public LogInDTO(String email, String password) {
+    public RegisterRequestDTO(
+            String displayName,
+            String email,
+            String password
+    ) {
+        this.displayName = displayName;
         this.email = email;
         this.password = password;
+    }
+
+    /**
+     * Gets the display name.
+     * Precondition: none.
+     * Postcondition: the request is unchanged.
+     *
+     * @return the submitted display name
+     */
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    /**
+     * Sets the display name.
+     * Precondition: none; validation occurs before processing.
+     * Postcondition: the field contains the supplied value.
+     *
+     * @param displayName the submitted display name
+     */
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     /**
@@ -61,7 +94,7 @@ public class LogInDTO {
     }
 
     /**
-     * Gets the password for authentication.
+     * Gets the password for encoding during registration.
      * Precondition: none.
      * Postcondition: the request is unchanged.
      *
